@@ -32,6 +32,7 @@ class _CalculateResultScreenState extends State<CalculateResultScreen> {
               children: <Widget>[
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         "MoveMate",
@@ -40,11 +41,12 @@ class _CalculateResultScreenState extends State<CalculateResultScreen> {
                             fontWeight: FontWeight.w800),
                       ).paddingRight(10),
                       const Icon(Icons.delivery_dining_outlined,
+                          size: 38,
                           color: Colors.orange),
                     ]),
                 Padding(
                     padding: const EdgeInsets.all(40),
-                    child: Image.asset("assets/pngs/parcel_1.jpeg",
+                    child: Image.asset("assets/pngs/parcel_9.png",
                         width: 170, height: 170)),
                 Text(
                   "Total Estimated Amount",
@@ -77,7 +79,7 @@ class _CalculateResultScreenState extends State<CalculateResultScreen> {
                 Padding(
                         padding: const EdgeInsets.only(left: 50, right: 50),
                         child: Text(
-                            "This amount is estaimated this will vary if you change your location or weight.",
+                            "This amount is estimated this will vary if you change your location or weight.",
                             textAlign: TextAlign.center,
                             style: AppStyle.body.copyWith(color: kGrey)))
                     .addHeight(40),

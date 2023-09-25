@@ -453,8 +453,9 @@ class _CalculateScreenState extends State<CalculateScreen> {
                                 child: Center(
                                     child: Text("Calculate",
                                         style: AppStyle.body.copyWith(
-                                            color: kWhite, fontSize: 18))))))
-                    .addHeight(20)
+                                            color: kWhite, fontSize: 18)))))),
+                   const SizedBox(height: 40)
+                    
               ])),
             )));
   }
