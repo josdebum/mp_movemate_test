@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:moniepoint_test/app/widgets/available_vehicle_container.dart';
+import 'package:moniepoint_test/app/widgets/custom_search_field.dart';
 import 'package:moniepoint_test/core/constants/color_constant.dart';
-import 'package:moniepoint_test/core/routes/app_routes.dart';
 import 'package:moniepoint_test/core/themes/app_style.dart';
 import 'package:moniepoint_test/core/utils/size_config/extensions.dart';
 import 'package:moniepoint_test/core/utils/size_config/size_config.dart';
@@ -41,9 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     WidgetsBinding.instance
         .addPostFrameCallback((_) => () => focusNode.requestFocus());
-
-    Size size = MediaQuery.of(context).size;
-
     focusNode.requestFocus();
     SizeConfig.init(context);
     return Scaffold(
@@ -52,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       FadeInDown(
           preferences: const AnimationPreferences(
               duration: Duration(
-            milliseconds: 500,
+            milliseconds: 900,
           )),
           child: Container(
               width: double.infinity,
@@ -130,112 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                   context,
                                   PageRouteBuilder(
-                                      //fullscreenDialog: true,
-                                      transitionsBuilder: (BuildContext context,
-                                          Animation<double> animation,
-                                          Animation<double> secondaryAnimation,
-                                          Widget child) {
-                                        return Align(
-                                            child: FadeIn(
-                                          //opacity: animation,
-                                          child: const SearchScreen(),
-                                        ));
-                                      },
-                                      transitionDuration:
-                                          const Duration(milliseconds: 1),
                                       pageBuilder: (_, __, ___) =>
-                                          const SearchScreen()));
-
-                              //Navigator.pushNamed(context, AppRoutes.searchScreen);
+                                      const SearchScreen()));
                             },
-                            child: Hero(
-                                tag: 'navigate',
-                                transitionOnUserGestures: true,
-                                flightShuttleBuilder: ((flightContext,
-                                    animation,
-                                    flightDirection,
-                                    fromHeroContext,
-                                    toHeroContext) {
-                                  animation.addStatusListener((status) {
-                                    if (status == AnimationStatus.completed) {
-                                      focusNode.requestFocus();
-                                    }
-                                  });
-
-                                  return toHeroContext.widget;
-                                }),
-                                child: Container(
-                                    width: double.infinity,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                        color: kWhite,
-                                        border: Border.all(
-                                            color: Colors.transparent),
-                                        borderRadius:
-                                            BorderRadius.circular(40)),
-                                    child: Center(
-                                        child: TextFormField(
-                                      cursorColor: kPurple,
-                                      cursorWidth: 0.9,
-                                      enabled: false,
-                                      style:
-                                          AppStyle.body.copyWith(color: kGrey),
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, AppRoutes.searchScreen);
-                                      },
-                                      decoration: InputDecoration(
-                                        prefixIcon: const Icon(
-                                          Icons.search,
-                                          color: kPurple,
-                                          size: 20,
-                                        ),
-
-                                        suffixIcon: Container(
-                                            height: 20,
-                                            width: 20,
-                                            margin: const EdgeInsets.all(6),
-                                            padding: const EdgeInsets.all(6),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(40),
-                                              color: Colors.orange,
-                                            ),
-                                            child: const Icon(
-                                                Icons.book_outlined,
-                                                color: kWhite,
-                                                size: 20)),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(40),
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                            borderSide: BorderSide.none),
-                                        isDense: true,
-                                        fillColor: kWhite,
-                                        filled: true,
-                                        contentPadding: const EdgeInsets.all(
-                                          18,
-                                        ),
-                                        hintText: "Enter the receipt number...",
-                                        hintStyle: AppStyle.body
-                                            .copyWith(color: kGrey),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                            borderSide: BorderSide.none),
-                                        errorBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(40),
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        //: InputBorder.none,
-                                      ),
-                                      //   onChanged: (){},
-                                    ))))),
+                            child:  Hero(
+                            tag: "navigate",
+                            child: const CustomSearch())),
                       ])))),
       FadeInUp(
           preferences: const AnimationPreferences(
@@ -291,9 +188,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   Colors.orange.shade50,
                                               child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(8),
+                                                      const EdgeInsets.all(6),
                                                   child: Image.asset(
-                                                      "assets/pngs/parcel_1.jpeg")))
+                                                      "assets/pngs/parcel_9.png")))
                                           .paddingRight(10),
                                       Column(
                                           crossAxisAlignment:
@@ -347,9 +244,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   Colors.green.shade50,
                                               child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(8),
+                                                      const EdgeInsets.all(6),
                                                   child: Image.asset(
-                                                      "assets/pngs/parcel_1.jpeg")))
+                                                      "assets/pngs/parcel_9.png")))
                                           .paddingRight(10),
                                       Column(
                                           crossAxisAlignment:
@@ -391,8 +288,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const Icon(Icons.add, color: Colors.orange),
                                 Text(
                                   "Add Stop",
-                                  style: AppStyle.body
-                                      .copyWith(color: Colors.orange),
+                                  style: AppStyle.body.copyWith(
+                                      color: Colors.orange,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
                                 )
                               ])
                         ]))),

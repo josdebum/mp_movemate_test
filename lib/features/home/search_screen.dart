@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:moniepoint_test/app/widgets/custom_search_field.dart';
 import 'package:moniepoint_test/app/widgets/search_result_container.dart';
 import 'package:moniepoint_test/core/constants/color_constant.dart';
 import 'package:moniepoint_test/core/routes/app_routes.dart';
-import 'package:moniepoint_test/core/themes/app_style.dart';
 import 'package:moniepoint_test/core/utils/size_config/size_config.dart';
 import 'package:moniepoint_test/core/utils/widget_extension.dart';
 
@@ -57,81 +57,7 @@ class _SearchScreenState extends State<SearchScreen>
                   child: const Icon(Icons.arrow_back_ios_sharp))),
           title: Hero(
               tag: "navigate",
-              transitionOnUserGestures: true,
-              // child:FadeInUp(
-              //           preferences: const AnimationPreferences(
-              //               duration: Duration(
-              //             milliseconds: 250,
-              //           )),
-              //           child:
-              child: GestureDetector(
-                  onTap: () {
-                    //Navigator.pushNamed(context, AppRoutes.searchScreen);
-                  },
-                  child: Container(
-                      width: double.infinity,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          color: kWhite,
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Center(
-                          child: TextFormField(
-                        cursorColor: kPurple,
-                        cursorWidth: 0.9,
-                        enabled: true,
-                        style: AppStyle.body.copyWith(color: kGrey),
-                        onTap: () {
-                          //Navigator.pushNamed(context, AppRoutes.searchScreen);
-                        },
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(
-                            Icons.search,
-                            color: kPurple,
-                            size: 20,
-                          ),
-
-                          suffixIcon: Container(
-                              height: 20,
-                              width: 20,
-                              margin: const EdgeInsets.all(6),
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                color: Colors.orange,
-                              ),
-                              child: const Icon(Icons.book_outlined,
-                                  color: kWhite, size: 20)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: const BorderSide(
-                                width: 1, color: Colors.transparent),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: const BorderSide(
-                                width: 1, color: Colors.transparent),
-                          ),
-                          isDense: true,
-                          fillColor: kWhite,
-                          filled: true,
-                          contentPadding: const EdgeInsets.all(
-                            18,
-                          ),
-                          hintText: "Enter the receipt number...",
-                          hintStyle: AppStyle.body.copyWith(color: kGrey),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
-                              borderSide: const BorderSide(
-                                  width: 0, color: Colors.transparent)),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: const BorderSide(
-                                width: 1, color: Colors.transparent),
-                          ),
-                          //: InputBorder.none,
-                        ),
-                        //   onChanged: (){},
-                      ))))),
+              child:  const CustomSearch()),
         ),
         body: SafeArea(
             child: SingleChildScrollView(
@@ -157,8 +83,7 @@ class _SearchScreenState extends State<SearchScreen>
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                      ),
+                                          horizontal: 16, vertical: 10),
                                       child: ListView.separated(
                                           shrinkWrap: true,
                                           scrollDirection: Axis.vertical,

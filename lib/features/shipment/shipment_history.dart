@@ -79,11 +79,11 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                   // _menuBar2(),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height +200,
                     child: PageView(
                       controller: _pageController,
-                      padEnds: false,
-                      physics: const ClampingScrollPhysics(),
+                     // padEnds: false,
+                      physics: const BouncingScrollPhysics(),
                       onPageChanged: (int i) {
                         FocusScope.of(context).requestFocus(FocusNode());
                         setState(() {
@@ -157,7 +157,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
                                 child: Text(
-                              "12",
+                              "4",
                               style: TextStyle(
                                   color: activePageIndex == 0
                                       ? kWhite
@@ -197,7 +197,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
                                 child: Text(
-                              "12",
+                              "2",
                               style: AppStyle.small.copyWith(
                                   color: activePageIndex == 1
                                       ? kWhite
@@ -237,7 +237,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
                                 child: Text(
-                              "12",
+                              "6",
                               style: AppStyle.small.copyWith(
                                   color: activePageIndex == 2
                                       ? kWhite
@@ -277,7 +277,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
                                 child: Text(
-                              "12",
+                              "10",
                               style: AppStyle.small.copyWith(
                                   color: activePageIndex == 3
                                       ? kWhite
@@ -317,7 +317,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
                                 child: Text(
-                              "12",
+                              "1",
                               style: AppStyle.small.copyWith(
                                   color: activePageIndex == 4
                                       ? kWhite

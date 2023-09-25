@@ -68,10 +68,10 @@ class _SearchContainerState extends State<SearchContainer> {
           visualDensity: VisualDensity.compact,
           minLeadingWidth: 0,
           leading: CircleAvatar(
-              backgroundColor: Colors.green.shade50,
+              backgroundColor: kPurple,
               child: Padding(
                   padding: EdgeInsets.fromLTRB(8.w, 8.h, 8.w, 8.h),
-                  child: Image.asset("assets/pngs/parcel_1.jpeg"))),
+                  child: Image.asset("assets/pngs/parcel_8.png", color: kWhite))),
           title: Text(
             widget.title,
             style: AppStyle.header.copyWith(fontSize: 17.sp),
@@ -79,7 +79,7 @@ class _SearchContainerState extends State<SearchContainer> {
           subtitle: Row(children: <Widget>[
             Text(
               widget.id,
-              style: AppStyle.small.copyWith(fontSize: 17.sp),
+              style: AppStyle.small.copyWith(fontSize: 14, color: kGrey),
             ).paddingRight(2),
             const CircleAvatar(
               radius: 3,
@@ -87,7 +87,7 @@ class _SearchContainerState extends State<SearchContainer> {
             ).paddingRight(2),
             Text(
               widget.startLocation,
-              style: AppStyle.small.copyWith(),
+              style: AppStyle.small.copyWith(fontSize: 14, color: kGrey),
             ).paddingRight(2),
             Icon(
               Icons.arrow_forward_rounded,
@@ -95,7 +95,7 @@ class _SearchContainerState extends State<SearchContainer> {
             ).paddingRight(2),
             Text(
               widget.endLocation,
-              style: AppStyle.small.copyWith(),
+              style: AppStyle.body.copyWith(fontSize: 14, color: kGrey),
             )
           ]),
         ));

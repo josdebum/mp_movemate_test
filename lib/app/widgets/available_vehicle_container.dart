@@ -47,7 +47,7 @@ class _AvailableVehicleContainerState extends State<AvailableVehicleContainer> {
               ))),
       Positioned(
         right: 2,
-        bottom: 6,
+        bottom: 4,
         child: FadeInRight(
           preferences: const AnimationPreferences(
               duration: Duration(

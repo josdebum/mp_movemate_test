@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moniepoint_test/app/bottom_nav_bar.dart';
+import 'package:moniepoint_test/core/constants/color_constant.dart';
 import 'package:moniepoint_test/core/routes/route_generator.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Moniepoint Test",
-      theme: ThemeData(),
+      theme: ThemeData(primaryColor: kPurple),
       onGenerateRoute: RouteGenerator.generateRoute,
       home: NavigationWidget(),
     );
