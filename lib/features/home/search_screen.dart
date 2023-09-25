@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:moniepoint_test/app/widgets/custom_search_field.dart';
 import 'package:moniepoint_test/app/widgets/search_result_container.dart';
 import 'package:moniepoint_test/core/constants/color_constant.dart';
 import 'package:moniepoint_test/core/routes/app_routes.dart';
 import 'package:moniepoint_test/core/utils/size_config/size_config.dart';
-import 'package:moniepoint_test/core/utils/widget_extension.dart';
+
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -84,34 +85,43 @@ class _SearchScreenState extends State<SearchScreen>
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16, vertical: 10),
-                                      child: ListView.separated(
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          physics:
-                                              const BouncingScrollPhysics(),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return SearchContainer(
-                                                    id: "#1Z999AA10123456 ",
-                                                    title: "Summer",
-                                                    endLocation: "Lagos",
-                                                    startLocation: " Ogun",
-                                                    animationcontroller:
+                                      child:
+
+                                      AnimationLimiter(
+                                          child: ListView.separated(
+                                            itemCount: 6,
+                                            shrinkWrap: true,
+                                            separatorBuilder:
+                                                (BuildContext context,
+                                                int index) {
+                                              return const SizedBox(
+                                                  width: double.infinity,
+                                                  child: Divider(
+                                                      color: kGrey,
+                                                      thickness: 0.2));
+                                            },
+                                            itemBuilder: (BuildContext context, int index) {
+                                              return AnimationConfiguration.staggeredList(
+                                                position: index,
+                                                duration: const Duration(milliseconds: 400),
+                                                child: SlideAnimation(
+                                                  verticalOffset: 20.0,
+                                                  curve: Curves.easeIn,
+                                                  child:  SearchContainer(
+                                                        id: "#1Z999AA10123456 ",
+                                                        title: "Summer",
+                                                        endLocation: "Lagos",
+                                                        startLocation: " Ogun",
+                                                        animationcontroller:
                                                         _animationcontroller,
-                                                    index: index,
-                                                    duration: animationduration)
-                                                .addHeight(6);
-                                          },
-                                          separatorBuilder:
-                                              (BuildContext context,
-                                                  int index) {
-                                            return const SizedBox(
-                                                width: double.infinity,
-                                                child: Divider(
-                                                    color: kGrey,
-                                                    thickness: 0.2));
-                                          },
-                                          itemCount: totalitems))))
+                                                        index: index,
+                                                        duration: animationduration)
+
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                  ))))
                         ])))));
   }
 }

@@ -40,6 +40,7 @@ dependencies:
   flutter_animator: ^3.2.2
   countup: ^0.1.4
   chips_choice: ^3.0.1
+  flutter_staggered_animations: ^1.1.1
 
 
 
