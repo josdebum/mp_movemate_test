@@ -1,16 +1,14 @@
-git add README.md# moniepoint_test
+# Moniepoint take home test
 
-A new Flutter project.
+Movemate app
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+https://dribbble.com/shots/21617837-Movemate-Shipments-Mobile-App
 
-A few resources to get you started if this is your first Flutter project:
+● A mobile translation of the dribble design.
+● Implemented all the pages shown in the video.
+● Imitated all the scroll behaviors, effects and animations in the app design video
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## DESIGN
+Design Implementation from <a href="https://dribbble.com/shots/21617837-Movemate-Shipments-Mobile-App" target="_blank"><strong>>> FIGMA</strong></a>
