@@ -6,7 +6,9 @@ Movemate app
 https://dribbble.com/shots/21617837-Movemate-Shipments-Mobile-App
 
 ● A mobile translation of the dribble design.
+
 ● Implemented all the pages shown in the video.
+
 ● Imitated all the scroll behaviors, effects and animations in the app design video
 
 
