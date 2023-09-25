@@ -34,6 +34,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
           backgroundColor: kPurple,
           elevation: 0,
           automaticallyImplyLeading: true,
+          titleTextStyle: AppStyle.body.copyWith(color: kWhite, fontSize: 18),
           leading: FadeInDown(
               preferences: const AnimationPreferences(
                   duration: Duration(

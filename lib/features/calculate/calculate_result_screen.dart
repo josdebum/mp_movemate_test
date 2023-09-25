@@ -41,8 +41,7 @@ class _CalculateResultScreenState extends State<CalculateResultScreen> {
                             fontWeight: FontWeight.w800),
                       ).paddingRight(10),
                       const Icon(Icons.delivery_dining_outlined,
-                          size: 38,
-                          color: Colors.orange),
+                          size: 38, color: Colors.orange),
                     ]),
                 Padding(
                     padding: const EdgeInsets.all(40),

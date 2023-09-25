@@ -15,17 +15,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         body: SafeArea(
             child: Hero(
-        tag:"navigate",
-        child:Padding(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 10),
-                child: Column(children: <Widget>[
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Profile",
-                        style: AppStyle.header3.copyWith(),
-                      )).addHeight(10),
-                ]))))
-    );
+                tag: "navigate",
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 20, 16, 10),
+                    child: Column(children: <Widget>[
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Profile",
+                            style: AppStyle.header3.copyWith(),
+                          )).addHeight(10),
+                    ])))));
   }
 }

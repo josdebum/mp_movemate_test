@@ -7,7 +7,6 @@ import 'package:moniepoint_test/core/constants/color_constant.dart';
 import 'package:moniepoint_test/core/routes/app_routes.dart';
 import 'package:moniepoint_test/core/utils/size_config/size_config.dart';
 
-
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -56,9 +55,7 @@ class _SearchScreenState extends State<SearchScreen>
                     Navigator.pushNamed(context, AppRoutes.navigationWidget);
                   },
                   child: const Icon(Icons.arrow_back_ios_sharp))),
-          title: Hero(
-              tag: "navigate",
-              child:  const CustomSearch()),
+          title: const Hero(tag: "navigate", child: CustomSearch()),
         ),
         body: SafeArea(
             child: SingleChildScrollView(
@@ -85,43 +82,43 @@ class _SearchScreenState extends State<SearchScreen>
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16, vertical: 10),
-                                      child:
-
-                                      AnimationLimiter(
-                                          child: ListView.separated(
-                                            itemCount: 6,
-                                            shrinkWrap: true,
-                                            separatorBuilder:
-                                                (BuildContext context,
-                                                int index) {
-                                              return const SizedBox(
-                                                  width: double.infinity,
-                                                  child: Divider(
-                                                      color: kGrey,
-                                                      thickness: 0.2));
-                                            },
-                                            itemBuilder: (BuildContext context, int index) {
-                                              return AnimationConfiguration.staggeredList(
-                                                position: index,
-                                                duration: const Duration(milliseconds: 400),
-                                                child: SlideAnimation(
+                                      child: AnimationLimiter(
+                                        child: ListView.separated(
+                                          itemCount: 6,
+                                          shrinkWrap: true,
+                                          separatorBuilder:
+                                              (BuildContext context,
+                                                  int index) {
+                                            return const SizedBox(
+                                                width: double.infinity,
+                                                child: Divider(
+                                                    color: kGrey,
+                                                    thickness: 0.2));
+                                          },
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return AnimationConfiguration
+                                                .staggeredList(
+                                              position: index,
+                                              duration: const Duration(
+                                                  milliseconds: 400),
+                                              child: SlideAnimation(
                                                   verticalOffset: 20.0,
                                                   curve: Curves.easeIn,
-                                                  child:  SearchContainer(
-                                                        id: "#1Z999AA10123456 ",
-                                                        title: "Summer",
-                                                        endLocation: "Lagos",
-                                                        startLocation: " Ogun",
-                                                        animationcontroller:
-                                                        _animationcontroller,
-                                                        index: index,
-                                                        duration: animationduration)
-
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                  ))))
+                                                  child: SearchContainer(
+                                                      id: "#1Z999AA10123456 ",
+                                                      title: "Summer",
+                                                      endLocation: "Lagos",
+                                                      startLocation: " Ogun",
+                                                      animationcontroller:
+                                                          _animationcontroller,
+                                                      index: index,
+                                                      duration:
+                                                          animationduration)),
+                                            );
+                                          },
+                                        ),
+                                      ))))
                         ])))));
   }
 }

@@ -130,9 +130,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       pageBuilder: (_, __, ___) =>
                                       const SearchScreen()));
                             },
-                            child:  Hero(
+                            child:  const Hero(
                             tag: "navigate",
-                            child: const CustomSearch())),
+                            child: CustomSearch())),
                       ])))),
       FadeInUp(
           preferences: const AnimationPreferences(

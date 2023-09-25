@@ -45,6 +45,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
             backgroundColor: kPurple,
             elevation: 0,
             centerTitle: true,
+            titleTextStyle: AppStyle.body.copyWith(color: kWhite, fontSize: 18),
             automaticallyImplyLeading: true,
             leading: FadeInLeft(
                 preferences: const AnimationPreferences(
