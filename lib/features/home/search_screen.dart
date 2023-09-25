@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:moniepoint_test/app/widgets/search_result_container.dart';
 import 'package:moniepoint_test/core/constants/color_constant.dart';
+import 'package:moniepoint_test/core/routes/app_routes.dart';
 import 'package:moniepoint_test/core/themes/app_style.dart';
 import 'package:moniepoint_test/core/utils/size_config/size_config.dart';
 import 'package:moniepoint_test/core/utils/widget_extension.dart';
@@ -17,7 +18,7 @@ class _SearchScreenState extends State<SearchScreen>
     with TickerProviderStateMixin {
   late AnimationController _animationcontroller;
   double animationduration = 0.0;
-  int totalitems = 2;
+  int totalitems = 4;
 
   @override
   void initState() {
@@ -51,14 +52,18 @@ class _SearchScreenState extends State<SearchScreen>
               )),
               child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, AppRoutes.navigationWidget);
                   },
                   child: const Icon(Icons.arrow_back_ios_sharp))),
-          title: ZoomIn(
-              preferences: const AnimationPreferences(
-                  duration: Duration(
-                seconds: 2,
-              )),
+          title: Hero(
+              tag: "navigate",
+              transitionOnUserGestures: true,
+              // child:FadeInUp(
+              //           preferences: const AnimationPreferences(
+              //               duration: Duration(
+              //             milliseconds: 250,
+              //           )),
+              //           child:
               child: GestureDetector(
                   onTap: () {
                     //Navigator.pushNamed(context, AppRoutes.searchScreen);
@@ -129,60 +134,59 @@ class _SearchScreenState extends State<SearchScreen>
                       ))))),
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-              child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: Column(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
+            child: SingleChildScrollView(
+                child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                        //crossAxisAlignment: CrossAxisAlignment.start,
 
-                      children: <Widget>[
-                        FadeInUpBig(
-                            preferences: const AnimationPreferences(
-                                duration: Duration(
-                              seconds: 1,
-                            )),
-                            child:
-                            Card(
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                    ),
-                                    child: ListView.separated(
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        physics: const BouncingScrollPhysics(),
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return SearchContainer(
-                                                  id: "#1Z999AA10123456 ",
-                                                  title: "Summer",
-                                                  endLocation: "Lagos",
-                                                  startLocation: " Ogun",
-                                                  animationcontroller:
-                                                      _animationcontroller,
-                                                  index: index,
-                                                  duration: animationduration)
-                                              .addHeight(6);
-                                        },
-                                        separatorBuilder:
-                                            (BuildContext context, int index) {
-                                          return const SizedBox(
-                                              width: double.infinity,
-                                              child: Divider(
-                                                  color: kGrey,
-                                                  thickness: 0.2));
-                                        },
-                                        itemCount: totalitems)))
-              )
-                      ]))),
-        ));
+                        children: <Widget>[
+                          FadeInUpBig(
+                              preferences: const AnimationPreferences(
+                                  duration: Duration(
+                                milliseconds: 400,
+                              )),
+                              child: Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                      ),
+                                      child: ListView.separated(
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return SearchContainer(
+                                                    id: "#1Z999AA10123456 ",
+                                                    title: "Summer",
+                                                    endLocation: "Lagos",
+                                                    startLocation: " Ogun",
+                                                    animationcontroller:
+                                                        _animationcontroller,
+                                                    index: index,
+                                                    duration: animationduration)
+                                                .addHeight(6);
+                                          },
+                                          separatorBuilder:
+                                              (BuildContext context,
+                                                  int index) {
+                                            return const SizedBox(
+                                                width: double.infinity,
+                                                child: Divider(
+                                                    color: kGrey,
+                                                    thickness: 0.2));
+                                          },
+                                          itemCount: totalitems))))
+                        ])))));
   }
 }

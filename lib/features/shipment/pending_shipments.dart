@@ -4,10 +4,11 @@ import 'package:moniepoint_test/core/themes/app_style.dart';
 import 'package:moniepoint_test/core/utils/widget_extension.dart';
 
 class PendingShipment extends StatefulWidget {
-  const PendingShipment({Key? key, required this.status, required this.count})
+  const PendingShipment({Key? key, required this.controller, required this.status, required this.count})
       : super(key: key);
   final String status;
   final int count;
+  final ScrollController controller;
 
   @override
   _PendingShipmentState createState() => _PendingShipmentState();
@@ -42,6 +43,7 @@ class _PendingShipmentState extends State<PendingShipment>
         body: Padding(
             padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
             child: SingleChildScrollView(
+              controller: widget.controller,
                 child: Column(children: <Widget>[
               Align(
                   alignment: Alignment.topLeft,
@@ -51,7 +53,9 @@ class _PendingShipmentState extends State<PendingShipment>
                   )).addHeight(10),
               ListView.builder(
                 shrinkWrap: true,
+                controller: widget.controller,
                 itemCount: widget.count,
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return ShipmentContainer(
                       title: "Arrived today!",
@@ -64,7 +68,7 @@ class _PendingShipmentState extends State<PendingShipment>
                       index: index,
                       duration: animationduration);
                 },
-              )
+              ).addHeight(30)
             ]))));
   }
 }

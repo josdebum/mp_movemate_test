@@ -3,6 +3,7 @@ import 'package:moniepoint_test/app/bottom_nav_bar.dart';
 import 'package:moniepoint_test/core/routes/app_routes.dart';
 import 'package:moniepoint_test/features/calculate/calculate_result_screen.dart';
 import 'package:moniepoint_test/features/home/search_screen.dart';
+import 'package:moniepoint_test/features/profile/profile_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,6 +12,8 @@ class RouteGenerator {
     return MaterialPageRoute(builder: (_) => const SearchScreen());
       case AppRoutes.calculateResult:
         return MaterialPageRoute(builder: (_) => const CalculateResultScreen());
+      case AppRoutes.profile:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
       case AppRoutes.navigationWidget:
         return MaterialPageRoute(
             builder: (_) =>  NavigationWidget());

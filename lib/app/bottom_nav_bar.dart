@@ -25,78 +25,64 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     });
   }
 
-
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
         onWillPop: () async => false,
-    child: Scaffold(
-        body:
-        PageView(
-          controller: _pageController,
-          onPageChanged: _onPageChanged,
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            HomeScreen(),
-                 CalculateScreen(),
-                 ShipmentHistory(),
+        child: Scaffold(
+            body: PageView(
+              controller: _pageController,
+              onPageChanged: _onPageChanged,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                HomeScreen(),
+                CalculateScreen(),
+                ShipmentHistory(),
+                // ProfileScreen2()
 
-            ProfileScreen()
-          ],
-        ),
-
-      bottomNavigationBar:  SlideInUp(
-    preferences: const AnimationPreferences(
-    duration: Duration(
-    seconds: 1,
-    )),
-    child:Visibility(
-
-        visible: _selectedIndex == 0 || _selectedIndex == 3,
-        child:CustomLineIndicatorBottomNavbar(
-        selectedColor: kPurple,
-        unSelectedColor: kGrey,
-        backgroundColor: Colors.white,
-        selectedIconSize: 30,
-        unselectedIconSize: 28,
-
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-          _pageController.jumpToPage(
-              _selectedIndex);
-        },
-        enableLineIndicator: true,
-        lineIndicatorWidth: 4,
-        indicatorType: IndicatorType.Top,
-
-        customBottomBarItems: [
-          CustomBottomBarItems(
-            label: 'Home',
-            icon: Icons.home_outlined
-          ),
-          CustomBottomBarItems(
-            label: "Calculate",
-            icon: Icons.calculate_outlined
-          ),
-          CustomBottomBarItems(
-              label: "Shipment", icon: Icons.history_outlined),
-          CustomBottomBarItems(
-            label: "Profile",
-            icon: Icons.person_outline
-          ),
-
-        ],
-      )),
-
-    )));
+                ProfileScreen()
+              ],
+            ),
+            bottomNavigationBar: SlideInUp(
+              preferences: const AnimationPreferences(
+                  duration: Duration(
+                seconds: 1,
+              )),
+              child: Visibility(
+                  visible: _selectedIndex == 0 || _selectedIndex == 3,
+                  child: CustomLineIndicatorBottomNavbar(
+                    selectedColor: kPurple,
+                    unSelectedColor: kGrey,
+                    backgroundColor: Colors.white,
+                    selectedIconSize: 30,
+                    unselectedIconSize: 28,
+                    currentIndex: _selectedIndex,
+                    onTap: (index) {
+                      setState(() {
+                        _selectedIndex = index;
+                      });
+                      _pageController.jumpToPage(_selectedIndex);
+                    },
+                    enableLineIndicator: true,
+                    lineIndicatorWidth: 4,
+                    indicatorType: IndicatorType.Top,
+                    customBottomBarItems: [
+                      CustomBottomBarItems(
+                          label: 'Home', icon: Icons.home_outlined),
+                      CustomBottomBarItems(
+                          label: "Calculate", icon: Icons.calculate_outlined),
+                      CustomBottomBarItems(
+                          label: "Shipment", icon: Icons.history_outlined),
+                      CustomBottomBarItems(
+                          label: "Profile", icon: Icons.person_outline),
+                    ],
+                  )),
+            )));
   }
 }

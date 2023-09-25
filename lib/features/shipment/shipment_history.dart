@@ -24,6 +24,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
     with SingleTickerProviderStateMixin {
   late PageController _pageController;
   int activePageIndex = 0;
+  final ScrollController controller = ScrollController();
 
   @override
   void dispose() {
@@ -64,6 +65,7 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
             )),
         body: SafeArea(
           child: SingleChildScrollView(
+            controller: controller,
             physics: const ClampingScrollPhysics(),
             child: GestureDetector(
               onTap: () {
@@ -88,18 +90,28 @@ class _ShipmentHistoryState extends State<ShipmentHistory>
                           activePageIndex = i;
                         });
                       },
-                      children: const [
-                        AllShipment(),
+                      children: [
+                        AllShipment(
+                          controller: controller,
+                        ),
                         PendingShipment(
                           status: "completed",
                           count: 2,
+                          controller: controller,
                         ),
                         PendingShipment(
                           status: "in-progress",
                           count: 6,
+                          controller: controller,
                         ),
-                        PendingShipment(status: "pending", count: 10),
-                        PendingShipment(status: "cancelled", count: 1),
+                        PendingShipment(
+                            controller: controller,
+                            status: "pending",
+                            count: 10),
+                        PendingShipment(
+                            controller: controller,
+                            status: "cancelled",
+                            count: 1),
                       ],
                     ),
                   ),

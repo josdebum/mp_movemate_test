@@ -7,6 +7,7 @@ import 'package:moniepoint_test/core/themes/app_style.dart';
 import 'package:moniepoint_test/core/utils/size_config/extensions.dart';
 import 'package:moniepoint_test/core/utils/size_config/size_config.dart';
 import 'package:moniepoint_test/core/utils/widget_extension.dart';
+import 'package:moniepoint_test/features/home/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,20 +17,46 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FocusNode focusNode = FocusNode();
+
+  @override
+  void initState() {
+// TODO: implement initState
+    super.initState();
+
+// focusNode = FocusNode();
+
+// focusNode?.requestFocus()
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    focusNode.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => () => focusNode.requestFocus());
+
+    Size size = MediaQuery.of(context).size;
+
+    focusNode.requestFocus();
     SizeConfig.init(context);
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
-      SlideInDown(
+      FadeInDown(
           preferences: const AnimationPreferences(
               duration: Duration(
-            seconds: 1,
+            milliseconds: 500,
           )),
           child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(16, 70, 16, 20),
+              padding: const EdgeInsets.fromLTRB(16, 50, 16, 20),
               color: kPurple,
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -100,77 +127,115 @@ class _HomeScreenState extends State<HomeScreen> {
                             ]).addHeight(20),
                         GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.searchScreen);
-                            },
-                            child: Container(
-                                width: double.infinity,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                    color: kWhite,
-                                    borderRadius: BorderRadius.circular(40)),
-                                child: Center(
-                                    child: TextFormField(
-                                  cursorColor: kPurple,
-                                  cursorWidth: 0.9,
-                                  enabled: false,
-                                  style: AppStyle.body.copyWith(color: kGrey),
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.searchScreen);
-                                  },
-                                  decoration: InputDecoration(
-                                    prefixIcon: const Icon(
-                                      Icons.search,
-                                      color: kPurple,
-                                      size: 20,
-                                    ),
+                              Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                      //fullscreenDialog: true,
+                                      transitionsBuilder: (BuildContext context,
+                                          Animation<double> animation,
+                                          Animation<double> secondaryAnimation,
+                                          Widget child) {
+                                        return Align(
+                                            child: FadeIn(
+                                          //opacity: animation,
+                                          child: const SearchScreen(),
+                                        ));
+                                      },
+                                      transitionDuration:
+                                          const Duration(milliseconds: 1),
+                                      pageBuilder: (_, __, ___) =>
+                                          const SearchScreen()));
 
-                                    suffixIcon: Container(
-                                        height: 20,
-                                        width: 20,
-                                        margin: const EdgeInsets.all(6),
-                                        padding: const EdgeInsets.all(6),
-                                        decoration: BoxDecoration(
+                              //Navigator.pushNamed(context, AppRoutes.searchScreen);
+                            },
+                            child: Hero(
+                                tag: 'navigate',
+                                transitionOnUserGestures: true,
+                                flightShuttleBuilder: ((flightContext,
+                                    animation,
+                                    flightDirection,
+                                    fromHeroContext,
+                                    toHeroContext) {
+                                  animation.addStatusListener((status) {
+                                    if (status == AnimationStatus.completed) {
+                                      focusNode.requestFocus();
+                                    }
+                                  });
+
+                                  return toHeroContext.widget;
+                                }),
+                                child: Container(
+                                    width: double.infinity,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                        color: kWhite,
+                                        border: Border.all(
+                                            color: Colors.transparent),
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
+                                    child: Center(
+                                        child: TextFormField(
+                                      cursorColor: kPurple,
+                                      cursorWidth: 0.9,
+                                      enabled: false,
+                                      style:
+                                          AppStyle.body.copyWith(color: kGrey),
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, AppRoutes.searchScreen);
+                                      },
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(
+                                          Icons.search,
+                                          color: kPurple,
+                                          size: 20,
+                                        ),
+
+                                        suffixIcon: Container(
+                                            height: 20,
+                                            width: 20,
+                                            margin: const EdgeInsets.all(6),
+                                            padding: const EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(40),
+                                              color: Colors.orange,
+                                            ),
+                                            child: const Icon(
+                                                Icons.book_outlined,
+                                                color: kWhite,
+                                                size: 20)),
+                                        focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(40),
-                                          color: Colors.orange,
+                                          borderSide: BorderSide.none,
                                         ),
-                                        child: const Icon(Icons.book_outlined,
-                                            color: kWhite, size: 20)),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(40),
-                                      borderSide: const BorderSide(
-                                          width: 1, color: Colors.transparent),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(40),
-                                      borderSide: const BorderSide(
-                                          width: 1, color: Colors.transparent),
-                                    ),
-                                    isDense: true,
-                                    fillColor: kWhite,
-                                    filled: true,
-                                    contentPadding: const EdgeInsets.all(
-                                      18,
-                                    ),
-                                    hintText: "Enter the receipt number...",
-                                    hintStyle:
-                                        AppStyle.body.copyWith(color: kGrey),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(40),
-                                        borderSide: const BorderSide(
-                                            width: 0,
-                                            color: Colors.transparent)),
-                                    errorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(40),
-                                      borderSide: const BorderSide(
-                                          width: 1, color: Colors.transparent),
-                                    ),
-                                    //: InputBorder.none,
-                                  ),
-                                  //   onChanged: (){},
-                                )))),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                            borderSide: BorderSide.none),
+                                        isDense: true,
+                                        fillColor: kWhite,
+                                        filled: true,
+                                        contentPadding: const EdgeInsets.all(
+                                          18,
+                                        ),
+                                        hintText: "Enter the receipt number...",
+                                        hintStyle: AppStyle.body
+                                            .copyWith(color: kGrey),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                            borderSide: BorderSide.none),
+                                        errorBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(40),
+                                          borderSide: BorderSide.none,
+                                        ),
+                                        //: InputBorder.none,
+                                      ),
+                                      //   onChanged: (){},
+                                    ))))),
                       ])))),
       FadeInUp(
           preferences: const AnimationPreferences(

@@ -115,8 +115,13 @@ class _ShipmentContainerState extends State<ShipmentContainer> {
                               widget.title,
                               style: AppStyle.header.copyWith(fontSize: 17),
                             ).addHeight(4),
-                            SizedBox(width: 230.w, child: Text(widget.subtitle))
-                                .addHeight(20),
+                            SizedBox(
+                                width: 230.w,
+                                child: Text(widget.subtitle,
+                                    style: AppStyle.small.copyWith(
+                                      fontSize: 14,
+                                      color: kGrey,
+                                    ))).addHeight(20),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,

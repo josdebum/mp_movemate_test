@@ -14,7 +14,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: Padding(
+            child: Hero(
+        tag:"navigate",
+        child:Padding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 10),
                 child: Column(children: <Widget>[
                   Align(
@@ -23,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         "Profile",
                         style: AppStyle.header3.copyWith(),
                       )).addHeight(10),
-                ]))));
+                ]))))
+    );
   }
 }
